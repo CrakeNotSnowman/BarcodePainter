@@ -7,6 +7,7 @@ import numpy
 def arrangeSequence(myArray, myWidth):
     depth = 1 + int(len(myArray)/myWidth)
     trailing = myWidth - len(myArray)%myWidth
+    # Pad out the row
     for i in range(trailing):
 	myArray.append(0)
  
