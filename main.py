@@ -43,8 +43,8 @@ def interface():
     args.add_argument('-i2', '--input-file2', help='Input File 2')
     args.add_argument('-i3', '--input-file3', help='Input File 3')
     args.add_argument('-o', '--output-file', default= "output.png", help='Output Image Filename')
-    args.add_argument('-n', '--normalize', default= True, help='[yes/no]   \t Set Minimum Value of the Input to Zero')
-    args.add_argument('-c', '--colorMap', default= "RGB", help='[RGB/HSL/G]\tUse "RGB", "HSL", or "G"Greyscale Colormap')
+    #args.add_argument('-n', '--normalize', default= True, help='[yes/no]   \t Set Minimum Value of the Input to Zero')
+    args.add_argument('-c', '--colorMap', default= "HSL", help='[RGB/HSL/G]\tUse "RGB", "HSL", or "G"Greyscale Colormap')
     args.add_argument('-s', '--shape', default= "s", help='[S/R]      \tShape of image, "S"Square, "R"Rectangle')
     args.add_argument('-r', '--rectangle', type=int, default= 512, help='[int]      \tIf shape is "Rectangle", -r defines the restricted dimension pixel count')
     #args.add_argument('-w', '--warnings', default=False, help='[yes/no]   \tDisplay Warnings')
@@ -87,6 +87,7 @@ def sanitize(args):
 		print "Exiting Now"
 		sys.exit()
     # Normalize
+    '''
     if args.normalize != True:
 	if args.normalize.lower() in positive:
 	    args.normalize = True
@@ -106,6 +107,7 @@ def sanitize(args):
 	        if response.lower() in negative:
 		    args.normalize = False
 		    break
+    '''
     # Color Map
     if twoD == True:
 	if args.colorMap.upper() not in ["RGB", "HSL", "R", "H"]:
@@ -250,8 +252,8 @@ def main(args):
 
 
     # Normalize the vectors for the colormaps
-    if args.normalize == True:
-	vect1 = normalizeDC(vect1)
+    #if args.normalize == True:
+    vect1 = normalizeDC(vect1)
     vect1 = numpy.array(normalize(vect1))
     if len(vect2)>0:
 	if args.normalize == True:

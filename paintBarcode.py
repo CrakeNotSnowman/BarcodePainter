@@ -92,6 +92,11 @@ def drawHSL(H, S, L, width, filename):
 	S = S + 1.0
 	L = numpy.zeros(len(H))
 	L = L + 0.5
+	# Below automatically blackens all regions where the input H[i] = 0
+	#  as this is a more intuitive view of values
+	for i in range(len(H)):
+	    if H[i] == 0.0:
+		L[i] = 0.0
     elif len(S) == 0:
 	H = H*240.0/360.0 # Squish it so the highest H isn't close to the lowest H
 	S = numpy.zeros(len(H))
@@ -135,6 +140,7 @@ def drawImage(R, G, B, width, filename):
     img = Image.fromarray(rgb, "RGB")
     img.save(filename, "PNG")
     img.show()
+
     return
 
 def drawGrey(L, width, filename):
