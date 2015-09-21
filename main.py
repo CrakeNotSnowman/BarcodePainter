@@ -188,7 +188,13 @@ def sanitize(args):
 
 def parseIn(infile):
     inf = open(infile, 'r')
-    temp = inf.read()
+    temp = ""
+    for line in inf:
+	holder = line.strip()
+	if len(holder) > 0:
+	    print holder[0:100]
+	    if holder[0] != ">" and holder[0] != "#":
+		temp = temp + holder
     temp = temp.strip()
     temp = temp.replace("\n", " ")
     temp = temp.replace("\t", " ")
